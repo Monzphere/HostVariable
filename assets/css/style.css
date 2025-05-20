@@ -1,0 +1,249 @@
+/* Estilos para o dropdown de host no topo do dashboard */
+.host-filter-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 4px 0 8px 0;
+    padding: 6px 10px;
+    background-color: transparent !important;
+    border-radius: 2px;
+}
+
+/* Contêiner do filtro */
+.host-filter-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* Label Host: - Suporte a temas */
+.host-filter-wrapper > div:first-child {
+    font-weight: bold;
+    margin-right: 10px;
+    white-space: nowrap;
+    color: var(--text-color, inherit);
+}
+
+/* Container do dropdown */
+.host-select-dropdown-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    position: relative;
+}
+
+/* Label interno (oculto quando estamos usando nosso próprio label) */
+.host-select-dropdown-container .host-select-label {
+    display: none;
+}
+
+/* Estilo do select - Agora transformado em input com datalist */
+.host-select-dropdown {
+    min-width: 250px;
+    flex-grow: 1;
+    height: 28px;
+    padding: 0 8px;
+    border-radius: 2px;
+    background-color: rgba(255,255,255,0.2);
+    color: inherit;
+    font-size: 14px;
+    margin-right: 8px;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.host-select-dropdown:focus {
+    outline: none;
+    border-color: #0275b8;
+    box-shadow: 0 0 0 2px rgba(2, 117, 184, 0.2);
+}
+
+/* Estilos para modo escuro */
+.theme-dark .host-select-dropdown,
+body.dark-theme .host-select-dropdown {
+    background-color: rgba(40, 40, 40, 0.5);
+    color: #fff;
+    border-color: rgba(128, 128, 128, 0.7);
+}
+
+/* Estilos para tema azul */
+.blue-theme .host-select-dropdown,
+body.blue-theme .host-select-dropdown {
+    background-color: rgba(14, 41, 64, 0.3);
+    color: #eef5ff;
+    border-color: rgba(100, 150, 200, 0.6);
+}
+
+/* Estilos para as opções do datalist */
+.host-options-list {
+    min-width: 100%;
+    width: auto;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    position: fixed;
+    z-index: 99999;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    display: none;
+    padding: 4px 0;
+}
+
+.host-option-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.15s;
+}
+
+.host-option-item:hover, .host-option-item.selected {
+    background-color: #f0f0f0;
+}
+
+/* Tema escuro para as opções */
+.theme-dark .host-options-list,
+body.dark-theme .host-options-list {
+    background-color: #2b2b2b;
+    color: #fff;
+    border-color: #555;
+}
+
+.theme-dark .host-option-item:hover, 
+.theme-dark .host-option-item.selected,
+body.dark-theme .host-option-item:hover,
+body.dark-theme .host-option-item.selected {
+    background-color: #383838;
+    color: #fff;
+}
+
+/* Tema azul para as opções */
+.blue-theme .host-options-list,
+body.blue-theme .host-options-list {
+    background-color: #0e2940;
+    color: #eef5ff;
+    border-color: #2b629e;
+}
+
+.blue-theme .host-option-item:hover,
+.blue-theme .host-option-item.selected,
+body.blue-theme .host-option-item:hover,
+body.blue-theme .host-option-item.selected {
+    background-color: #17385a;
+}
+
+/* Botão de edição para o widget - compatível com temas */
+.host-nav-edit-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    background-color: var(--action-bg-color, rgba(0, 0, 0, 0.1));
+    cursor: pointer;
+    color: var(--action-color, #555);
+    font-size: 12px;
+    transition: background-color 0.2s, color 0.2s;
+    border: 1px solid var(--action-border-color, transparent);
+}
+
+.host-nav-edit-button:hover {
+    background-color: var(--action-hover-bg-color, rgba(0, 0, 0, 0.2));
+    color: var(--link-hover-color, #1976d2);
+    border-color: var(--link-hover-color, #1976d2);
+}
+
+.host-nav-edit-button::before {
+    content: "\270E"; /* Símbolo de lápis */
+    font-size: 14px;
+}
+
+/* Tooltip para o botão de edição */
+.host-nav-edit-button[data-tooltip] {
+    position: relative;
+}
+
+.host-nav-edit-button[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+.host-nav-edit-button[data-tooltip]:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Ocultar COMPLETAMENTE o widget original no dashboard */
+.dashboard-grid-widget[data-type="hostvariable"],
+[data-widget-type="hostvariable"],
+.widget-hostvariable,
+div[class*="host-navigator"],
+[data-widgetid*="hostvariable"],
+.dashboard-grid-widget-container:has(.host-navigator),
+.dashboard-grid-widget-container:has([data-type="hostvariable"]),
+.js-host-navigator-widget {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+}
+
+/* Exceção: Não ocultar quando estiver no modo de edição */
+.dashboard-grid-widget-edit-mode .dashboard-grid-widget[data-type="hostvariable"],
+.dashboard-grid-widget-edit-mode [data-widget-type="hostvariable"],
+.dashboard-grid-widget-edit-mode .widget-hostvariable,
+.dashboard-grid-widget-edit-mode div[class*="host-navigator"],
+.dashboard-grid-widget-edit-mode [data-widgetid*="hostvariable"],
+.dashboard-grid-widget-edit-mode .js-host-navigator-widget,
+.js-host-navigator-widget.force-show-widget {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    width: auto !important;
+    min-width: auto !important;
+    max-width: none !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+}
+
+/* Ajustar layout geral do dashboard para compensar a remoção do widget */
+.dashboard-grid {
+    grid-template-rows: auto !important;
+}
+
+/* Fix para o label do host ficar na mesma linha */
+.host-select-label {
+    white-space: nowrap;
+} 
