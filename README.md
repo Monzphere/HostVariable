@@ -1,5 +1,8 @@
 # Enhanced Host Navigator for Zabbix
 
+![image](https://github.com/user-attachments/assets/cc808603-48a4-4df6-8e82-c0db880ddfcd)
+
+
 ## Overview
 
 This module is an enhanced version of the native Zabbix "Host Navigator" widget. It transforms the standard widget into a more user-friendly and accessible dropdown filter that appears in the dashboard header, providing a seamless way to select and filter hosts across the entire dashboard.
